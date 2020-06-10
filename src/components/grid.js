@@ -1,16 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
+function upTo(size, block) {
+  return Array(size)
+    .fill()
+    .map((_, i) => block(i + 1))
+}
 
 const Cell = ({ label }) => <td>{label}</td>;
 
 const Row = ({ index, size }) => {
   return (
     <tr>
-      {Array(size)
-        .fill()
-        .map((_, i) => (
-          <Cell label={`${index}.${i + 1}`} />
-        ))}
+      {upTo(size, (i) => <Cell label={`${index}.${i}`} />)}
     </tr>
   );
 };
@@ -20,11 +21,7 @@ const Grid = ({ size }) => {
     <div>
       <table>
         <tbody>
-          {Array(size)
-            .fill()
-            .map((_, i) => (
-              <Row index={i + 1} size={size} />
-            ))}
+          {upTo(size, (i) => <Row index={i + 1} size={size} />)}
         </tbody>
       </table>
     </div>
