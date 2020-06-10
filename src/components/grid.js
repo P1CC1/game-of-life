@@ -1,4 +1,5 @@
 import React from "react";
+import cn  from "classnames"
 
 function upTo(size, block) {
   return Array(size)
@@ -6,24 +7,20 @@ function upTo(size, block) {
     .map((_, i) => block(i + 1))
 }
 
-const Cell = ({ label }) => <td>{label}</td>;
+const Cell = ({ x, y, state }) => <div className={cn("cell", {alive: state, dead: !state})}></div>;
 
 const Row = ({ index, size }) => {
   return (
-    <tr>
-      {upTo(size, (i) => <Cell label={`${index}.${i}`} />)}
-    </tr>
+    <div className={"row"}>
+      {upTo(size, (i) => <Cell key={`cell-${index}.${i}`} state={((index + i) % 2) > 0} />)}
+    </div>
   );
 };
 
 const Grid = ({ size }) => {
   return (
-    <div>
-      <table>
-        <tbody>
-          {upTo(size, (i) => <Row index={i + 1} size={size} />)}
-        </tbody>
-      </table>
+    <div className={"grid"}>
+      {upTo(size, (i) => <Row  key={`row-${i}`} index={i} size={size} />)}
     </div>
   );
 };
