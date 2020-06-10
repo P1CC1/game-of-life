@@ -13,6 +13,7 @@
     height: 30px;
     border-top: solid 1px;
     border-left: solid 1px;
+    border-color: black;
 }
 
 .grid .cell.alive {
@@ -25,8 +26,10 @@
 
 .grid .row .cell:last-child {
     border-right: solid 1px;
+    border-color: black;
 }
 
 .grid .row:last-child .cell {
     border-bottom: solid 1px;
+    border-color: black;
 }
