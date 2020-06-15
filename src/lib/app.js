@@ -27,7 +27,22 @@ const App = () => {
     setGameState(newGameState)
   }
 
-  return <Grid size={SIZE} gameState={gameState} changeCellState={changeCellState} />;
+  const step = () => {
+    const newGameState = copyGameState(SIZE, gameState)
+    // TODO implement "game of life" here
+    newGameState[0][0] = !newGameState[0][0]
+    
+
+
+    setGameState(newGameState)
+  }
+
+  return (
+    <div>
+      <Grid size={SIZE} gameState={gameState} changeCellState={changeCellState} />
+      <button onClick={step}>next step</button>
+    </div>
+  )
 }
 
 export default App
